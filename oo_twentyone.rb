@@ -1,6 +1,6 @@
 module Hand
   def hand_value
-    values = hand.map {|card| card[1]}
+    values = hand.map { |card| card[1] }
 
     sum = 0
     values.each do |value|
@@ -13,7 +13,7 @@ module Hand
       end
     end
 
-    values.select { |value| value == "A"}.count.times do
+    values.select { |value| value == "A" }.count.times do
       sum -= 10 if sum > 21
     end
 
@@ -77,33 +77,25 @@ class Dealer < Participant
     end
     answer == 'hit'
   end
-
 end
 
 class Deck
   FULL_DECK = [['A', '2'], ['A', '3'], ['A', '4'], ['A', '5'], ['A', '6'],
-             ['A', '7'], ['A', '8'], ['A', '9'], ['A', '10'], ['A', 'J'],
-             ['A', 'Q'], ['A', 'K'], ['A', 'A'], ['H', '2'], ['H', '3'],
-             ['H', '4'], ['H', '5'], ['H', '6'], ['H', '7'], ['H', '8'],
-             ['H', '9'], ['H', '10'], ['H', 'J'], ['H', 'Q'], ['H', 'K'],
-             ['H', 'A'], ['S', '2'], ['S', '3'], ['S', '4'], ['S', '5'],
-             ['S', '6'], ['S', '7'], ['S', '8'], ['S', '9'], ['S', '10'],
-             ['S', 'J'], ['S', 'Q'], ['S', 'K'], ['S', 'A'], ['C', '2'],
-             ['C', '3'], ['C', '4'], ['C', '5'], ['C', '6'], ['C', '7'],
-             ['C', '8'], ['C', '9'], ['C', '10'], ['C', 'J'], ['C', 'Q'],
-             ['C', 'K'], ['C', 'A']]
+               ['A', '7'], ['A', '8'], ['A', '9'], ['A', '10'], ['A', 'J'],
+               ['A', 'Q'], ['A', 'K'], ['A', 'A'], ['H', '2'], ['H', '3'],
+               ['H', '4'], ['H', '5'], ['H', '6'], ['H', '7'], ['H', '8'],
+               ['H', '9'], ['H', '10'], ['H', 'J'], ['H', 'Q'], ['H', 'K'],
+               ['H', 'A'], ['S', '2'], ['S', '3'], ['S', '4'], ['S', '5'],
+               ['S', '6'], ['S', '7'], ['S', '8'], ['S', '9'], ['S', '10'],
+               ['S', 'J'], ['S', 'Q'], ['S', 'K'], ['S', 'A'], ['C', '2'],
+               ['C', '3'], ['C', '4'], ['C', '5'], ['C', '6'], ['C', '7'],
+               ['C', '8'], ['C', '9'], ['C', '10'], ['C', 'J'], ['C', 'Q'],
+               ['C', 'K'], ['C', 'A']]
 
   attr_accessor :cards
 
   def initialize
     @cards = FULL_DECK
-  end
-
-end
-
-class Card
-  def initialize
-    # what are the "states" of a card?
   end
 end
 
@@ -133,7 +125,7 @@ class Game
   end
 
   def deal_initial_cards
-    2.times do 
+    2.times do
       deal_card(player)
       deal_card(dealer)
     end
@@ -301,8 +293,6 @@ class Game
 
     display_goodbye_message
   end
-
-
 end
 
 Game.new.play
@@ -311,18 +301,15 @@ Game.new.play
 
 =begin
 
-I was able to deal 2 cards to the player from a new deck (dup of FULL_DECK constant in Deck class). This correctly removes the cards from the new deck.
-
-I was able to calculate and return the total value of the current hand. It doesn't save to an instance variable for the Participant class. It's just the return value of the hand_value method in the Hand module (included in Participant --> player/dealer)
+logic works, but is probably a little rough.
 
 Next up:
 
-4. wrap all in a loop
-5. break loop if both participants choose to "stay", get 21, or bust
-6. depending on reason for breaking, display appropriate message to console
 7. Figure out which level of access is appropriate for instance methods
-    ex: should the player have access to methods that can modify their hand or see the dealer hand?
+  ex: should the player have access to methods that
+  can modify their hand or see the dealer hand?
 8. prompt player for name
-9. make it look nice on the console
+9. make it look nicer on the console
+10. ASCII art?
 
 =end
